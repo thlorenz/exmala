@@ -1,0 +1,36 @@
+{
+  "name": "exmala",
+  "version": "0.0.0",
+  "description": "Comparing different approaches to parse large XML messages.",
+  "main": "index.js",
+  "scripts": {
+    "test-main": "tap test/*.js",
+    "test-0.8": "nave use 0.8 npm run test-main",
+    "test-0.10": "nave use 0.10 npm run test-main",
+    "test-all": "npm run test-main && npm run test-0.8 && npm run test-0.10",
+    "test": "if [ -e $TRAVIS ]; then npm run test-all; else npm run test-main; fi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thlorenz/exmala.git"
+  },
+  "homepage": "https://github.com/thlorenz/exmala",
+  "dependencies": {
+    "xml2js": "~0.4.4"
+  },
+  "devDependencies": {
+  },
+  "keywords": [],
+  "author": {
+    "name": "Thorsten Lorenz",
+    "email": "thlorenz@gmx.de",
+    "url": "http://thlorenz.com"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/thlorenz/exmala/blob/master/LICENSE"
+  },
+  "engine": {
+    "node": ">=0.8"
+  }
+}
