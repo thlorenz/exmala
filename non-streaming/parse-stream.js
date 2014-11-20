@@ -3,25 +3,31 @@
 var xml2js = require('xml2js')
   , htmlparser = require('htmlparser2')
 
-exports.xml2js = function xml2js_(stream, cb) {
-  var bufs = [];
+exports.xml2js = function xml2js_(stream, to_s, cb) {
+  var bufs = [], data = '';
+
   stream
     .on('data', ondata)
     .on('error', cb)
     .on('end', onend)
 
   function ondata(d) {
-    bufs.push(d);
+    if (!to_s) return bufs.push(d);
+    data += d.toString();
   }
 
   function onend() {
-    var buf = Buffer.concat(bufs);
-    xml2js.parseString(buf, cb);
+    if (!to_s) {
+      var buf = Buffer.concat(bufs);
+      xml2js.parseString(buf, cb);
+    } else {
+      xml2js.parseString(data, cb);
+    }
   }
 }
 
-exports.htmlparser = function htmlparser_(stream, cb) {
-  var bufs = [];
+exports.htmlparser = function htmlparser_(stream, to_s, cb) {
+  var bufs = [], data = '';
   var handler = new htmlparser.DomHandler();
   var parser = new htmlparser.Parser(handler);
 
@@ -31,12 +37,18 @@ exports.htmlparser = function htmlparser_(stream, cb) {
     .on('end', onend)
 
   function ondata(d) {
-    bufs.push(d);
+    if (!to_s) return bufs.push(d);
+    data += d.toString();
   }
 
   function onend() {
-    var buf = Buffer.concat(bufs);
-    parser.end(buf)
+    if (!to_s) {
+      var buf = Buffer.concat(bufs);
+      parser.end(buf)
+    } else {
+      parser.end(data);
+    }
+
     cb(null, handler.dom)
   }
 }

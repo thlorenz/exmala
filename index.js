@@ -69,13 +69,18 @@ var go = module.exports = function benchmark(opts, cb) {
     var stream = fs.createReadStream(file);
     var time = { start: process.hrtime(), end: null }
 
-    parse(stream, function process_(err, res) {
+    function onprocessed(err, res) {
       if (err) return cb(err);
       time.end = process.hrtime();
       times.push(time);
       self.done();
       bar.tick();
-    })
+    }
+
+    if (opts.streaming)
+      parse(stream, onprocessed)
+    else 
+      parse(stream, opts.to_s, onprocessed)
   }
 
   function ondone() {
@@ -101,16 +106,19 @@ var go = module.exports = function benchmark(opts, cb) {
 }
 
 var opts = {
-    parser: 'xml2js'
-  , streaming: false
-  , concurrency: 200
-  , number: 400
-  , file: 'ibm-request.soap.xml'
+    parser      : 'htmlparser'
+  , streaming   : false
+  , to_s        : true
+  , concurrency : 200
+  , number      : 400
+  , file        : 'ibm-request.soap.xml'
 }
 
 opts.resultsFile = path.join(__dirname, 'results',  
   (opts.streaming ? 'streaming' : 'non_streaming')
-  + '-' + opts.parser + '-c-'  + opts.concurrency + '-n-' + opts.number
+  + '-' + opts.parser 
+  + (opts.to_s ? '-to_s-' : '')
+  + '-c-'  + opts.concurrency + '-n-' + opts.number 
   + '-' + opts.file + '.json')
 
 go(opts, function (err) {
