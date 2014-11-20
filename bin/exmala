@@ -1,0 +1,46 @@
+#!/usr/bin/env node --expose-gc
+
+/*vim ft=js*/
+
+'use strict';
+
+var minimist = require('minimist')
+  , path = require('path')
+  , exmala = require('../')
+
+var argv = minimist(process.argv.slice(2)
+  , { boolean: [ 
+        'h', 'help'
+      , 'streaming', 's'
+      ]
+    , number: [
+          'concurrency', 'c'
+        , 'number', 'n'
+      ]
+    , string: [ 
+          'file', 'f' 
+        , 'parser', 'p'
+      ]
+    }
+)
+
+var opts = {
+    streaming   : argv.streaming   || argv.s
+  , concurrency : argv.concurrency || argv.c
+  , number      : argv.number      || argv.n
+  , parser      : argv.parser      || argv.p
+  , file        : path.resolve(argv.file || argv.f)
+}
+
+opts.resultsFile = path.join(__dirname, '..', 'results',  
+  (opts.streaming ? 'streaming' : 'buffering')
+  + '-' + opts.parser 
+  + (opts.to_s ? '-to_s' : '')
+  + '-c'  + opts.concurrency + '-n' + opts.number 
+  + '_' + path.basename(opts.file) + '.json')
+
+
+exmala(opts, function (err) {
+  if (err) return console.error(err);
+  console.log('\nResults stored at', opts.resultsFile);  
+})

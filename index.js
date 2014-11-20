@@ -1,4 +1,5 @@
 'use strict';
+
 var assert      = require('assert-cb')
   , queue       = require('minimal-queue')
   , fs          = require('fs')
@@ -45,11 +46,10 @@ var go = module.exports = function benchmark(opts, cb) {
   if (!assert(n, 'need number', cb)) return;
   if (!assert(file, 'need file', cb)) return;
   if (!assert(resultsFile, 'need resultsFile', cb)) return;
-  file = path.join(__dirname, 'data', file);
 
   var times = []
     , memories = []
-    , bar = new ProgressBar('  processing [:bar] :percent :etas', { width: 20, total: n });
+    , bar = new ProgressBar('  processing [:bar] :percent :etas', { width: 50, total: n, complete: '=', incomplete: ' ' });
 
   var parse = opts.streaming
     ? require('./streaming/parse-stream')[parser]
@@ -104,24 +104,3 @@ var go = module.exports = function benchmark(opts, cb) {
     q.enqueue(processFile)  
   }
 }
-
-var opts = {
-    parser      : 'htmlparser'
-  , streaming   : false
-  , to_s        : true
-  , concurrency : 200
-  , number      : 400
-  , file        : 'ibm-request.soap.xml'
-}
-
-opts.resultsFile = path.join(__dirname, 'results',  
-  (opts.streaming ? 'streaming' : 'non_streaming')
-  + '-' + opts.parser 
-  + (opts.to_s ? '-to_s-' : '')
-  + '-c-'  + opts.concurrency + '-n-' + opts.number 
-  + '-' + opts.file + '.json')
-
-go(opts, function (err) {
-  if (err) return console.error(err);
-  console.log('\nResults stored at', opts.resultsFile);  
-})

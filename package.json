@@ -4,11 +4,6 @@
   "description": "Comparing different approaches to parse large XML messages.",
   "main": "index.js",
   "scripts": {
-    "test-main": "tap test/*.js",
-    "test-0.8": "nave use 0.8 npm run test-main",
-    "test-0.10": "nave use 0.10 npm run test-main",
-    "test-all": "npm run test-main && npm run test-0.8 && npm run test-0.10",
-    "test": "if [ -e $TRAVIS ]; then npm run test-all; else npm run test-main; fi"
   },
   "repository": {
     "type": "git",
@@ -19,11 +14,14 @@
     "assert-cb": "~0.1.0",
     "htmlparser2": "~3.8.2",
     "minimal-queue": "0.0.1",
+    "minimist": "~1.1.0",
     "progress": "~1.1.8",
     "xml2js": "~0.4.4"
   },
-  "devDependencies": {},
-  "keywords": [],
+  "devDependencies": {
+    "browserify": "~6.3.2"
+  },
+  "keywords": ["xml", "benchmark", "memory", "speed", "parse" ],
   "author": {
     "name": "Thorsten Lorenz",
     "email": "thlorenz@gmx.de",
