@@ -1,5 +1,4 @@
 #!/usr/bin/env node --expose-gc
-
 /*vim ft=js*/
 
 'use strict';

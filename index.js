@@ -54,6 +54,7 @@ var go = module.exports = function benchmark(opts, cb) {
   inspect({
     settings: {
         parser      : parser
+      , streaming   : opts.streaming
       , concurrency : concurrency
       , number      : n
       , file        : file
