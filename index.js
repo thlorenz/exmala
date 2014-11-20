@@ -6,6 +6,10 @@ var assert      = require('assert-cb')
   , path        = require('path')
   , ProgressBar = require('progress')
 
+function inspect(obj, depth) {
+  console.error(require('util').inspect(obj, false, depth || 5, true));
+}
+
 function aggregate(result) {
   var sum = 0;
   var diffs = result.times.map(function diff_(ts) {
@@ -14,15 +18,16 @@ function aggregate(result) {
 
     var diff = (nanoSecs2 - nanoSecs1) / 1E6;
     sum += diff;
-    return diff + ' ms';
+    return diff;
   })
 
-  var rsss       = result.memories.map(function getRss(x) { return x.mem.rss })
-    , heapTotals = result.memories.map(function getHeapTotal(x) { return x.mem.heapTotal })
-    , heapUseds  = result.memories.map(function getHeapUsed(x) { return x.mem.heapUsed })
+  var rsss       = result.memories.map(function getRss(x) { return x.mem.rss / 1E6 })
+    , heapTotals = result.memories.map(function getHeapTotal(x) { return x.mem.heapTotal / 1E6 })
+    , heapUseds  = result.memories.map(function getHeapUsed(x) { return x.mem.heapUsed / 1E6 })
 
   return {
-      averageProcessing : (sum / diffs.length) + ' ms'
+      options           : result.options
+    , averageProcessing : (sum / diffs.length) + ' ms'
     , elapseds          : diffs
     , heapUseds         : heapUseds
     , heapTotals        : heapTotals
@@ -38,7 +43,6 @@ var go = module.exports = function benchmark(opts, cb) {
     , concurrency = opts.concurrency
     , n           = opts.number
     , file        = opts.file
-    , interval    = opts.interval || 1000
     , resultsFile = opts.resultsFile
 
   if (!assert(parser, 'need parser', cb)) return;
@@ -46,6 +50,16 @@ var go = module.exports = function benchmark(opts, cb) {
   if (!assert(n, 'need number', cb)) return;
   if (!assert(file, 'need file', cb)) return;
   if (!assert(resultsFile, 'need resultsFile', cb)) return;
+
+  inspect({
+    settings: {
+        parser      : parser
+      , concurrency : concurrency
+      , number      : n
+      , file        : file
+      , resultsFile : resultsFile
+    }
+  })
 
   var times = []
     , memories = []
@@ -73,6 +87,7 @@ var go = module.exports = function benchmark(opts, cb) {
       if (err) return cb(err);
       time.end = process.hrtime();
       times.push(time);
+      trackMemoryUsage();
       self.done();
       bar.tick();
     }
@@ -84,8 +99,6 @@ var go = module.exports = function benchmark(opts, cb) {
   }
 
   function ondone() {
-    clearInterval(tok)
-
     var result = {
         options  : opts
       , times    : times
@@ -93,8 +106,6 @@ var go = module.exports = function benchmark(opts, cb) {
     }
     fs.writeFile(opts.resultsFile, JSON.stringify(aggregate(result), null, 2), 'utf8', cb)
   }
-
-  var tok = setInterval(trackMemoryUsage, opts.interval);
 
   var q = queue.up(processFile);
   q.concurrency = concurrency;

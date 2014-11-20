@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "description": "Comparing different approaches to parse large XML messages.",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git://github.com/thlorenz/exmala.git"
@@ -19,9 +18,16 @@
     "xml2js": "~0.4.4"
   },
   "devDependencies": {
+    "beefy": "~2.1.1",
     "browserify": "~6.3.2"
   },
-  "keywords": ["xml", "benchmark", "memory", "speed", "parse" ],
+  "keywords": [
+    "xml",
+    "benchmark",
+    "memory",
+    "speed",
+    "parse"
+  ],
   "author": {
     "name": "Thorsten Lorenz",
     "email": "thlorenz@gmx.de",
