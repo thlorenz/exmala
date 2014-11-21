@@ -2,7 +2,7 @@
 
 Comparing different approaches to parse large XML messages.
 
-[![img](assets/buffering-xml2js.png)](http://thlorenz.github.io/exmala/client/)
+[![img](assets/buffering-streaming-htmlparser.gif)](http://thlorenz.github.io/exmala/client/)
 
 ## Streaming
 
