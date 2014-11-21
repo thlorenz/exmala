@@ -1,0 +1,38 @@
+body {
+  background: black;
+}
+
+h3 {
+  font-size: 24px;
+  color: green;
+}
+
+h5 {
+  font-size: 14px;
+  color: gray;
+}
+
+.dataset-group {
+  border: solid 2px silver;
+  border-radius: 5px;
+  background: rgb(31, 28, 26);
+  padding: 5px;
+  margin: 5px;
+}
+
+.dataset {
+  background: rgb(41, 38, 36);
+  margin: 5px;
+  border: solid 1px silver;
+  border-radius: 3px;
+  padding: 8px;
+  color: yellowgreen;
+  display: inline-table;
+}
+
+.chart {
+  width: 240px;
+  height: 130px;
+  margin: 15px;
+  padding: 8px;
+}

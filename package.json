@@ -18,8 +18,8 @@
     "xml2js": "~0.4.4"
   },
   "devDependencies": {
-    "beefy": "~2.1.1",
-    "browserify": "~6.3.2"
+    "browserify": "~6.3.2",
+    "watchify": "~2.1.1"
   },
   "keywords": [
     "xml",
