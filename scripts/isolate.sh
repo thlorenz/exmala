@@ -6,8 +6,8 @@ ulimit -n 2048
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ROOT=$DIR/..
 
-STREAMING=false
-PARSER=htmlparser
+STREAMING=true
+PARSER=xml2js
 FILE=$ROOT/data/ibm-request.soap.xml
 
 time $ROOT/bin/exmala -s $STREAMING \
@@ -32,28 +32,4 @@ time $ROOT/bin/exmala -s $STREAMING \
   -p $PARSER                        \
   -f $FILE                          \
   -n 2000                           \
-  -c 50                             \
-&&                                  \
-time $ROOT/bin/exmala -s $STREAMING \
-  -p $PARSER                        \
-  -f $FILE                          \
-  -n 2000                           \
-  -c 100                            \
-&&                                  \
-time $ROOT/bin/exmala -s $STREAMING \
-  -p $PARSER                        \
-  -f $FILE                          \
-  -n 2000                           \
-  -c 200                            \
-&&                                  \
-time $ROOT/bin/exmala -s $STREAMING \
-  -p $PARSER                        \
-  -f $FILE                          \
-  -n 2000                           \
-  -c 300                            \
-&&                                  \
-time $ROOT/bin/exmala -s $STREAMING \
-  -p $PARSER                        \
-  -f $FILE                          \
-  -n 2000                           \
-  -c 500                            
+  -c 50                             

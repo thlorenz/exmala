@@ -4,7 +4,15 @@
 var data = {
   buffering: {
     xml2js: {
-        'c100-n2000_ibm-request.soap': 
+        'c10-n2000_ibm-request.soap': 
+          require('../results/buffering-xml2js-c10-n2000_ibm-request.soap.xml.json')
+      , 'c20-n2000_ibm-request.soap': 
+          require('../results/buffering-xml2js-c20-n2000_ibm-request.soap.xml.json')
+      , 'c30-n2000_ibm-request.soap': 
+          require('../results/buffering-xml2js-c30-n2000_ibm-request.soap.xml.json')
+      , 'c50-n2000_ibm-request.soap': 
+          require('../results/buffering-xml2js-c50-n2000_ibm-request.soap.xml.json')
+      , 'c100-n2000_ibm-request.soap': 
           require('../results/buffering-xml2js-c100-n2000_ibm-request.soap.xml.json')
       , 'c200-n2000_ibm-request.soap': 
           require('../results/buffering-xml2js-c200-n2000_ibm-request.soap.xml.json')
@@ -18,7 +26,15 @@ var data = {
           require('../results/buffering-xml2js-c2000-n2000_ibm-request.soap.xml.json')
     },
     htmlparser: {
-        'c100-n2000_ibm-request.soap': 
+        'c10-n2000_ibm-request.soap': 
+          require('../results/buffering-htmlparser-c10-n2000_ibm-request.soap.xml.json')
+      , 'c20-n2000_ibm-request.soap': 
+          require('../results/buffering-htmlparser-c20-n2000_ibm-request.soap.xml.json')
+      , 'c30-n2000_ibm-request.soap': 
+          require('../results/buffering-htmlparser-c30-n2000_ibm-request.soap.xml.json')
+      , 'c50-n2000_ibm-request.soap': 
+          require('../results/buffering-htmlparser-c50-n2000_ibm-request.soap.xml.json')
+      , 'c100-n2000_ibm-request.soap': 
           require('../results/buffering-htmlparser-c100-n2000_ibm-request.soap.xml.json')
       , 'c200-n2000_ibm-request.soap': 
           require('../results/buffering-htmlparser-c200-n2000_ibm-request.soap.xml.json')
@@ -30,7 +46,15 @@ var data = {
   },
   streaming: {
     xml2js: {
-        'c100-n2000_ibm-request.soap': 
+        'c10-n2000_ibm-request.soap': 
+          require('../results/streaming-xml2js-c10-n2000_ibm-request.soap.xml.json')
+      , 'c20-n2000_ibm-request.soap': 
+          require('../results/streaming-xml2js-c20-n2000_ibm-request.soap.xml.json')
+      , 'c30-n2000_ibm-request.soap': 
+          require('../results/streaming-xml2js-c30-n2000_ibm-request.soap.xml.json')
+      , 'c50-n2000_ibm-request.soap': 
+          require('../results/streaming-xml2js-c50-n2000_ibm-request.soap.xml.json')
+      , 'c100-n2000_ibm-request.soap': 
           require('../results/streaming-xml2js-c100-n2000_ibm-request.soap.xml.json')
       , 'c200-n2000_ibm-request.soap': 
           require('../results/streaming-xml2js-c200-n2000_ibm-request.soap.xml.json')
@@ -38,7 +62,15 @@ var data = {
           require('../results/streaming-xml2js-c300-n2000_ibm-request.soap.xml.json')
     },
     htmlparser: {
-        'c100-n2000_ibm-request.soap': 
+        'c10-n2000_ibm-request.soap': 
+          require('../results/streaming-htmlparser-c10-n2000_ibm-request.soap.xml.json')
+      , 'c20-n2000_ibm-request.soap': 
+          require('../results/streaming-htmlparser-c20-n2000_ibm-request.soap.xml.json')
+      , 'c30-n2000_ibm-request.soap': 
+          require('../results/streaming-htmlparser-c30-n2000_ibm-request.soap.xml.json')
+      , 'c50-n2000_ibm-request.soap': 
+          require('../results/streaming-htmlparser-c50-n2000_ibm-request.soap.xml.json')
+      , 'c100-n2000_ibm-request.soap': 
           require('../results/streaming-htmlparser-c100-n2000_ibm-request.soap.xml.json')
       , 'c200-n2000_ibm-request.soap': 
           require('../results/streaming-htmlparser-c200-n2000_ibm-request.soap.xml.json')
@@ -162,52 +194,22 @@ function drawDataset(el, set) {
 
 var rootEl = document.getElementById('exmala-results');
 
+function makeDataset (d) { 
+  return Object.keys(d)
+    .reduce(function (acc, k) {
+      acc[k] = createDataset(d[k])
+      return acc;
+    }, {})
+}
+
 var datasets = {
   buffering: {
-    xml2js: {
-        'c100-n2000_ibm-request.soap': 
-          createDataset(data.buffering.xml2js['c100-n2000_ibm-request.soap'])
-      , 'c200-n2000_ibm-request.soap': 
-          createDataset(data.buffering.xml2js['c200-n2000_ibm-request.soap'])
-      , 'c300-n2000_ibm-request.soap': 
-          createDataset(data.buffering.xml2js['c300-n2000_ibm-request.soap'])
-      , 'c500-n2000_ibm-request.soap': 
-          createDataset(data.buffering.xml2js['c500-n2000_ibm-request.soap'])
-      , 'c1000-n2000_ibm-request.soap': 
-          createDataset(data.buffering.xml2js['c1000-n2000_ibm-request.soap'])
-      , 'c2000-n2000_ibm-request.soap': 
-          createDataset(data.buffering.xml2js['c2000-n2000_ibm-request.soap'])
-    },
-    htmlparser: {
-        'c100-n2000_ibm-request.soap': 
-          createDataset(data.buffering.htmlparser['c100-n2000_ibm-request.soap'])
-      , 'c200-n2000_ibm-request.soap': 
-          createDataset(data.buffering.htmlparser['c200-n2000_ibm-request.soap'])
-      , 'c300-n2000_ibm-request.soap': 
-          createDataset(data.buffering.htmlparser['c300-n2000_ibm-request.soap'])
-      , 'c500-n2000_ibm-request.soap': 
-          createDataset(data.buffering.htmlparser['c500-n2000_ibm-request.soap'])
-    }
+      xml2js: makeDataset(data.buffering.xml2js)
+    , htmlparser: makeDataset(data.buffering.htmlparser)
   },
   streaming: {
-    xml2js: {
-        'c100-n2000_ibm-request.soap': 
-          createDataset(data.streaming.xml2js['c100-n2000_ibm-request.soap'])
-      , 'c200-n2000_ibm-request.soap': 
-          createDataset(data.streaming.xml2js['c200-n2000_ibm-request.soap'])
-      , 'c300-n2000_ibm-request.soap': 
-          createDataset(data.streaming.xml2js['c300-n2000_ibm-request.soap'])
-    },
-    htmlparser: {
-        'c100-n2000_ibm-request.soap': 
-          createDataset(data.streaming.htmlparser['c100-n2000_ibm-request.soap'])
-      , 'c200-n2000_ibm-request.soap': 
-          createDataset(data.streaming.htmlparser['c200-n2000_ibm-request.soap'])
-      , 'c300-n2000_ibm-request.soap': 
-          createDataset(data.streaming.htmlparser['c300-n2000_ibm-request.soap'])
-      , 'c500-n2000_ibm-request.soap': 
-          createDataset(data.streaming.htmlparser['c500-n2000_ibm-request.soap'])
-    }
+      xml2js: makeDataset(data.streaming.xml2js) 
+    , htmlparser: makeDataset(data.streaming.htmlparser)
   }
 }
 
@@ -221,29 +223,24 @@ function heading(s) {
 
 var el = heading('Buffering xml2js')
 
-drawDataset(el, datasets.buffering.xml2js['c100-n2000_ibm-request.soap']);
-drawDataset(el, datasets.buffering.xml2js['c200-n2000_ibm-request.soap']);
-drawDataset(el, datasets.buffering.xml2js['c300-n2000_ibm-request.soap']);
-drawDataset(el, datasets.buffering.xml2js['c500-n2000_ibm-request.soap']);
-drawDataset(el, datasets.buffering.xml2js['c1000-n2000_ibm-request.soap']);
-drawDataset(el, datasets.buffering.xml2js['c2000-n2000_ibm-request.soap']);
+Object.keys(datasets.buffering.xml2js).forEach(function (k) {
+  drawDataset(el, datasets.buffering.xml2js[k]);
+})
 
 el = heading('Streaming xml2js')
 
-drawDataset(el, datasets.streaming.xml2js['c100-n2000_ibm-request.soap']);
-drawDataset(el, datasets.streaming.xml2js['c200-n2000_ibm-request.soap']);
-drawDataset(el, datasets.streaming.xml2js['c300-n2000_ibm-request.soap']);
+Object.keys(datasets.streaming.xml2js).forEach(function (k) {
+  drawDataset(el, datasets.streaming.xml2js[k]);
+})
 
 el = heading('Buffering htmlparser')
 
-drawDataset(el, datasets.buffering.htmlparser['c100-n2000_ibm-request.soap']);
-drawDataset(el, datasets.buffering.htmlparser['c200-n2000_ibm-request.soap']);
-drawDataset(el, datasets.buffering.htmlparser['c300-n2000_ibm-request.soap']);
-drawDataset(el, datasets.buffering.htmlparser['c500-n2000_ibm-request.soap']);
+Object.keys(datasets.buffering.htmlparser).forEach(function (k) {
+  drawDataset(el, datasets.buffering.htmlparser[k]);
+})
 
 el = heading('Streaming htmlparser')
 
-drawDataset(el, datasets.streaming.htmlparser['c100-n2000_ibm-request.soap']);
-drawDataset(el, datasets.streaming.htmlparser['c200-n2000_ibm-request.soap']);
-drawDataset(el, datasets.streaming.htmlparser['c300-n2000_ibm-request.soap']);
-drawDataset(el, datasets.streaming.htmlparser['c500-n2000_ibm-request.soap']);
+Object.keys(datasets.streaming.htmlparser).forEach(function (k) {
+  drawDataset(el, datasets.streaming.htmlparser[k]);
+})

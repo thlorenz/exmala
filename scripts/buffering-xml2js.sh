@@ -14,6 +14,30 @@ time $ROOT/bin/exmala -s $STREAMING \
   -p $PARSER                        \
   -f $FILE                          \
   -n 2000                           \
+  -c 10                             \
+&&                                  \
+time $ROOT/bin/exmala -s $STREAMING \
+  -p $PARSER                        \
+  -f $FILE                          \
+  -n 2000                           \
+  -c 20                             \
+&&                                  \
+time $ROOT/bin/exmala -s $STREAMING \
+  -p $PARSER                        \
+  -f $FILE                          \
+  -n 2000                           \
+  -c 30                             \
+&&                                  \
+time $ROOT/bin/exmala -s $STREAMING \
+  -p $PARSER                        \
+  -f $FILE                          \
+  -n 2000                           \
+  -c 50                             \
+&&                                  \
+time $ROOT/bin/exmala -s $STREAMING \
+  -p $PARSER                        \
+  -f $FILE                          \
+  -n 2000                           \
   -c 100                            \
 &&                                  \
 time $ROOT/bin/exmala -s $STREAMING \
