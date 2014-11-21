@@ -217,9 +217,11 @@ var datasets = {
 }
 
 function heading(s) {
+  var href = s.toLowerCase().replace(/ /g, '-')
+  var anchor = '<a class="anchor" href="#' + href + '"># </span></a>';
   var el = document.createElement('div');
   el.setAttribute('class', 'dataset-group')
-  el.innerHTML = '<h3>' + s + '</h3>';
+  el.innerHTML = '<h3 id="' + href  + '">' + anchor + s + '</h3>';
   rootEl.appendChild(el);
   return el;
 }
