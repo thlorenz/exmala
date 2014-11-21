@@ -1,6 +1,9 @@
 'use strict';
 /*jshint browser: true*/
 
+var tmp = document.getElementById('tmp')
+if (tmp) tmp.parentNode.removeChild(tmp);
+
 var data = {
   buffering: {
     xml2js: {
