@@ -2,6 +2,8 @@
 
 Comparing different approaches to parse large XML messages.
 
+[![img](assets/buffering-xml2js.png)](http://thlorenz.github.io/exmala/client/)
+
 ## Streaming
 
 When not buffering and writing to multiple parsers at once we risk running out of memory since all these parsers keep
