@@ -34,12 +34,18 @@ var data = {
           require('../results/streaming-xml2js-c100-n2000_ibm-request.soap.xml.json')
       , 'c200-n2000_ibm-request.soap': 
           require('../results/streaming-xml2js-c200-n2000_ibm-request.soap.xml.json')
+      , 'c300-n2000_ibm-request.soap': 
+          require('../results/streaming-xml2js-c300-n2000_ibm-request.soap.xml.json')
     },
     htmlparser: {
         'c100-n2000_ibm-request.soap': 
           require('../results/streaming-htmlparser-c100-n2000_ibm-request.soap.xml.json')
       , 'c200-n2000_ibm-request.soap': 
           require('../results/streaming-htmlparser-c200-n2000_ibm-request.soap.xml.json')
+      , 'c300-n2000_ibm-request.soap': 
+          require('../results/streaming-htmlparser-c300-n2000_ibm-request.soap.xml.json')
+      , 'c500-n2000_ibm-request.soap': 
+          require('../results/streaming-htmlparser-c500-n2000_ibm-request.soap.xml.json')
     }
   }
 }
@@ -189,12 +195,18 @@ var datasets = {
           createDataset(data.streaming.xml2js['c100-n2000_ibm-request.soap'])
       , 'c200-n2000_ibm-request.soap': 
           createDataset(data.streaming.xml2js['c200-n2000_ibm-request.soap'])
+      , 'c300-n2000_ibm-request.soap': 
+          createDataset(data.streaming.xml2js['c300-n2000_ibm-request.soap'])
     },
     htmlparser: {
         'c100-n2000_ibm-request.soap': 
           createDataset(data.streaming.htmlparser['c100-n2000_ibm-request.soap'])
       , 'c200-n2000_ibm-request.soap': 
           createDataset(data.streaming.htmlparser['c200-n2000_ibm-request.soap'])
+      , 'c300-n2000_ibm-request.soap': 
+          createDataset(data.streaming.htmlparser['c300-n2000_ibm-request.soap'])
+      , 'c500-n2000_ibm-request.soap': 
+          createDataset(data.streaming.htmlparser['c500-n2000_ibm-request.soap'])
     }
   }
 }
@@ -220,6 +232,7 @@ el = heading('Streaming xml2js')
 
 drawDataset(el, datasets.streaming.xml2js['c100-n2000_ibm-request.soap']);
 drawDataset(el, datasets.streaming.xml2js['c200-n2000_ibm-request.soap']);
+drawDataset(el, datasets.streaming.xml2js['c300-n2000_ibm-request.soap']);
 
 el = heading('Buffering htmlparser')
 
@@ -232,3 +245,5 @@ el = heading('Streaming htmlparser')
 
 drawDataset(el, datasets.streaming.htmlparser['c100-n2000_ibm-request.soap']);
 drawDataset(el, datasets.streaming.htmlparser['c200-n2000_ibm-request.soap']);
+drawDataset(el, datasets.streaming.htmlparser['c300-n2000_ibm-request.soap']);
+drawDataset(el, datasets.streaming.htmlparser['c500-n2000_ibm-request.soap']);

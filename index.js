@@ -57,6 +57,7 @@ var go = module.exports = function benchmark(opts, cb) {
       , streaming   : opts.streaming
       , concurrency : concurrency
       , number      : n
+      , gc          : opts.gc
       , file        : file
       , resultsFile : resultsFile
     }
@@ -71,7 +72,11 @@ var go = module.exports = function benchmark(opts, cb) {
     : require('./non-streaming/parse-stream')[parser]
 
   function trackMemoryUsage() {
-    if (typeof gc === 'function' && !opts.nogc) {
+    // turns out manually calling gc skews our benchmark quite a bit
+    //  - range of heap used is radically different (i.e. 8-10MB with and 10-25MB without manual gc)
+    //  - forced gc also incurrs about 30-40% perf overhead affecting parse times
+    // so lets default to not do that, but keep the `--gc` option in case you really want to
+    if (typeof gc === 'function' && opts.gc) {
       /*globals gc*/
       gc(); gc();
     }

@@ -44,4 +44,4 @@ time $ROOT/bin/exmala -s $STREAMING \
   -p $PARSER                        \
   -f $FILE                          \
   -n 2000                           \
-  -c 2000
+  -c 2000                            

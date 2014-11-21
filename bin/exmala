@@ -1,4 +1,4 @@
-#!/usr/bin/env node --expose-gc
+#!/usr/bin/env node
 /*vim ft=js*/
 
 'use strict';
@@ -11,6 +11,7 @@ var argv = minimist(process.argv.slice(2)
   , { boolean: [ 
         'h', 'help'
       , 'streaming', 's'
+      , 'gc', 'g'
       ]
     , number: [
           'concurrency', 'c'
@@ -28,6 +29,7 @@ var opts = {
   , concurrency : argv.concurrency || argv.c
   , number      : argv.number      || argv.n
   , parser      : argv.parser      || argv.p
+  , gc          : argv.gc          || argv.g
   , file        : path.resolve(argv.file || argv.f)
 }
 
