@@ -10,6 +10,8 @@ function inspect(obj, depth) {
   console.error(require('util').inspect(obj, false, depth || 5, true));
 }
 
+function noop() {}
+
 function aggregate(result) {
   var sum = 0;
   var diffs = result.times.map(function diff_(ts) {
@@ -49,7 +51,6 @@ var go = module.exports = function benchmark(opts, cb) {
   if (!assert(concurrency, 'need concurrency', cb)) return;
   if (!assert(n, 'need number', cb)) return;
   if (!assert(file, 'need file', cb)) return;
-  if (!assert(resultsFile, 'need resultsFile', cb)) return;
 
   inspect({
     settings: {
@@ -109,6 +110,10 @@ var go = module.exports = function benchmark(opts, cb) {
         options  : opts
       , times    : times
       , memories : memories
+    }
+    if (opts.resultsFile == null) {
+      console.error('\nNo results file provided, not writing results!')
+      return cb()
     }
     fs.writeFile(opts.resultsFile, JSON.stringify(aggregate(result), null, 2), 'utf8', cb)
   }

@@ -14,16 +14,16 @@
   "homepage": "https://github.com/thlorenz/exmala",
   "dependencies": {
     "assert-cb": "~0.1.0",
-    "htmlparser2": "~3.8.2",
     "minimal-queue": "0.0.1",
     "minimist": "~1.1.0",
-    "progress": "~1.1.8",
-    "xml2js": "~0.4.4"
+    "progress": "~1.1.8"
   },
   "devDependencies": {
     "browserify": "~6.3.2",
+    "htmlparser2": "^3.9.2",
     "uglify-js": "~2.4.15",
-    "watchify": "~2.1.1"
+    "watchify": "~2.1.1",
+    "xml2js": "^0.4.19"
   },
   "keywords": [
     "xml",
