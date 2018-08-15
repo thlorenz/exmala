@@ -19,8 +19,10 @@
     "progress": "~1.1.8"
   },
   "devDependencies": {
+    "benchmark": "~2.1.4",
     "browserify": "~6.3.2",
     "htmlparser2": "^3.9.2",
+    "numeral": "~2.0.6",
     "uglify-js": "~2.4.15",
     "watchify": "~2.1.1",
     "xml2js": "^0.4.19"
